@@ -18,7 +18,7 @@ spec:
 ```
 
 | Parameters               | Default value                             |
-|--------------------------|-------------------------------------------|
+|:-------------------------|:------------------------------------------|
 | grantTypes               | `["client_credentials", "refresh_token"]` |
 | redirectUris             | `["https://dummy.com"]`                   |
 | corsDomains              | `[]`                                      |

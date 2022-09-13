@@ -8,6 +8,7 @@ import io.javaoperatorsdk.operator.processing.event.source.informer.InformerEven
 import io.javaoperatorsdk.operator.processing.event.source.informer.Mappers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.util.Map;
 
@@ -15,8 +16,7 @@ import static no.fintlabs.KubernetesResourceUtilities.*;
 
 @Slf4j
 @Component
-@ControllerConfiguration(
-)
+@ControllerConfiguration
 public class NamOAuthClientApplicationReconciler implements Reconciler<NamOAuthClientApplicationResource>,
         EventSourceInitializer<NamOAuthClientApplicationResource>,
         ErrorStatusHandler<NamOAuthClientApplicationResource>,
@@ -35,11 +35,19 @@ public class NamOAuthClientApplicationReconciler implements Reconciler<NamOAuthC
     @Override
     public ErrorStatusUpdateControl<NamOAuthClientApplicationResource> updateErrorStatus(NamOAuthClientApplicationResource resource, Context<NamOAuthClientApplicationResource> context, Exception e) {
 
-        NamOAuthClientApplicationStatus namOAuthClientApplicationStatus = new NamOAuthClientApplicationStatus();
-        namOAuthClientApplicationStatus.setErrorMessage(e.getMessage());
+        NamOAuthClientApplicationStatus namOAuthClientApplicationStatus = resource.getStatus() ;
+        namOAuthClientApplicationStatus.setErrorMessage(getErrorMessage(e));
         resource.setStatus(namOAuthClientApplicationStatus);
         resource.setStatus(namOAuthClientApplicationStatus);
         return ErrorStatusUpdateControl.updateStatus(resource);
+    }
+
+    private String getErrorMessage(Exception e) {
+        if (e instanceof WebClientResponseException) {
+            return ((WebClientResponseException.BadRequest) e).getResponseBodyAsString();
+        }
+        return e.getMessage();
+
     }
 
 
@@ -51,12 +59,12 @@ public class NamOAuthClientApplicationReconciler implements Reconciler<NamOAuthC
         if (getClientIdFromAnnotation(resource).isPresent() && context.getSecondaryResource(Secret.class).isPresent()) {
             log.debug("Client and secret exists for resource {}", resource.getMetadata().getName());
 
-            namService.updateClientIfNeeded(
+            return namService.updateClientIfNeeded(
                     getClientIdFromAnnotation(resource).get(),
-                    resource
+                    resource,
+                    oAuthClientApplication -> updateStatusObjectOnUpdate(resource, oAuthClientApplication)
             );
 
-            return UpdateControl.noUpdate();
         }
 
         namService.createClientIfNeeded(

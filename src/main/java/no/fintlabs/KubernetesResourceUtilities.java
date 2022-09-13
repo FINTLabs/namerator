@@ -25,4 +25,11 @@ public class KubernetesResourceUtilities {
         status.setClientUri(oAuthClientApplication.getRegistrationClientUri());
         status.setErrorMessage(null);
     }
+
+    public static void updateStatusObjectOnUpdate(NamOAuthClientApplicationResource namOAuthClientApplicationResource, OAuthClientApplication oAuthClientApplication) {
+        NamOAuthClientApplicationStatus status = namOAuthClientApplicationResource
+                .getStatus();
+        status.setClientUri(oAuthClientApplication.getRegistrationClientUri());
+        status.setErrorMessage(null);
+    }
 }

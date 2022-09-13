@@ -1,5 +1,6 @@
 package no.fintlabs;
 
+import io.javaoperatorsdk.operator.api.reconciler.UpdateControl;
 import lombok.extern.slf4j.Slf4j;
 import no.fintlabs.oauth.OAuthClientApplication;
 import no.fintlabs.oauth.OidcRepository;
@@ -22,7 +23,7 @@ public class NamService {
         this.repository = repository;
     }
 
-    public OAuthClientApplication addClient(NamOAuthClientApplicationResource resource)  {
+    public OAuthClientApplication addClient(NamOAuthClientApplicationResource resource) {
         OAuthClientApplication oAuthClientApplication = OAuthClientApplication.builder()
                 .clientName(nameOauthClientNamePrefix + resource.getMetadata().getName() + "_" + uniqId())
                 .grantTypes(resource.getSpec().getGrantTypes())
@@ -44,19 +45,23 @@ public class NamService {
         }
     }
 
-    public void updateClientIfNeeded(String clientId, NamOAuthClientApplicationResource resource) {
-        getClientById(clientId)
-                .ifPresent(oAuthClientApplication -> {
-                    log.debug("Check if resource specs changed.");
-                    if (oAuthClientApplication.needsUpdate(resource.getSpec())) {
-                        log.debug("Resource specs changed so we need to update the OAuth client application.");
-                        oAuthClientApplication.update(resource.getSpec());
-                        OAuthClientApplication updatedOAuthClientApplication = repository.updateClient(oAuthClientApplication);
-                        log.debug("Updated client {}", updatedOAuthClientApplication);
-                    } else {
-                        log.debug("No need to update OAuth client application!");
-                    }
-                });
+    public UpdateControl<NamOAuthClientApplicationResource> updateClientIfNeeded(String clientId, NamOAuthClientApplicationResource resource, Consumer<OAuthClientApplication> onUpdate) {
+
+        OAuthClientApplication oAuthClientApplication = getClientById(clientId).orElseThrow();
+
+        log.debug("Check if resource specs changed.");
+        if (oAuthClientApplication.needsUpdate(resource.getSpec())) {
+            log.debug("Resource specs changed so we need to update the OAuth client application.");
+            oAuthClientApplication.update(resource.getSpec());
+            OAuthClientApplication updatedOAuthClientApplication = repository.updateClient(oAuthClientApplication);
+            onUpdate.accept(updatedOAuthClientApplication);
+            log.debug("Updated client {}", updatedOAuthClientApplication);
+            return UpdateControl.updateStatus(resource);
+        }
+
+        log.debug("No need to update OAuth client application!");
+
+        return UpdateControl.noUpdate();
     }
 
 
