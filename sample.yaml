@@ -1,0 +1,10 @@
+apiVersion: "fintlabs.no/v1alpha1"
+kind: NamOAuthClientApplicationResource
+metadata:
+  name: fint-flyt-sso-client
+spec:
+  corsDomains:
+    - https://beta.felleskomponent.no
+    - https://api.felleskomponent.no
+    - https://alpha.felleskomponent.no
+  idTokenSignedResponseAlg: RS256

@@ -1,0 +1,9 @@
+pluginManagement {
+    repositories {
+        maven { url 'https://repo.spring.io/release' }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+}
+rootProject.name = 'fint-k8s-operator-nam-oauth-client'
