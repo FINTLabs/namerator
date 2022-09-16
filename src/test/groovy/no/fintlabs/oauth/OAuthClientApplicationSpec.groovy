@@ -26,7 +26,7 @@ class OAuthClientApplicationSpec extends Specification {
         def needsUpdate = oAuthClientApplication.needsUpdate(namOAuthClientApplicationSpec)
 
         then:
-        needsUpdate
+        !needsUpdate
     }
 
     def "If client and spec is not equal we need to update"() {
@@ -46,6 +46,6 @@ class OAuthClientApplicationSpec extends Specification {
         def needsUpdate = oAuthClientApplication.needsUpdate(namOAuthClientApplicationSpec)
 
         then:
-        !needsUpdate
+        needsUpdate
     }
 }
