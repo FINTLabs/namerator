@@ -19,7 +19,7 @@ fint:
 
 spring:
   application:
-    name: fint-k8s-operator-example
+    name: fint-namerator
   security:
     oauth2:
       resourceserver:

@@ -6,4 +6,4 @@ pluginManagement {
     }
 
 }
-rootProject.name = 'fint-k8s-operator-nam-oauth-client'
+rootProject.name = 'fint-namerator'

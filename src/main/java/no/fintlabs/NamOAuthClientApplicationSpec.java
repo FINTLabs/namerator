@@ -24,4 +24,10 @@ public class NamOAuthClientApplicationSpec {
     private List<String> responseTypes = Arrays.asList(	"code", "id_token", "token");
     @Builder.Default
     private String idTokenSignedResponseAlg = "RS256";
+
+    @Builder.Default
+    private String clientIdProperty = "spring.security.oauth2.client.registration.fint.clientId";
+
+    @Builder.Default
+    private String clientSecretProperty = "spring.security.oauth2.client.registration.fint.clientSecret";
 }

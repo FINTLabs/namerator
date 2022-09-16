@@ -1,4 +1,4 @@
-# FINT Kubernetes Operator for NetIQ Access Manager
+# FINT NAMerator
 This operator provides the ability integrate NetIQ Access Manager Identity Provider with Kubernetes. 
 
 This Operator manages `NamOAuthClientApplicationResource` Custom Resource Definitions (CRDs).

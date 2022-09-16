@@ -31,8 +31,8 @@ public class SecretService {
             log.debug("Secret for {} is missing. Creating secret.", resource.getMetadata().getName());
             Map<String, String> stringData = new HashMap<>();
 
-            stringData.put("fint.oauth.client-id", oAuthClientApplication.getClientId());
-            stringData.put("fint.oauth.client-secret", oAuthClientApplication.getClientSecret());
+            stringData.put(resource.getSpec().getClientIdProperty(), oAuthClientApplication.getClientId());
+            stringData.put(resource.getSpec().getClientSecretProperty(), oAuthClientApplication.getClientSecret());
 
             Secret secret = new SecretBuilder()
                     .withNewMetadata()
