@@ -4,7 +4,6 @@ javaoperatorsdk:
       retry:
         maxAttempts: 3
 
-
 fint:
   client:
     password: ''
