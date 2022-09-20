@@ -68,6 +68,6 @@ jobs:
         with:
          manifests: ${{ steps.bake.outputs.manifestsBundle }}
          images: |
-           ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
+           ${{ steps.meta.outputs.tags }}
          namespace: operators
          action: deploy
