@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: namerator
+  labels:
+    app.kubernetes.io/name: fint-namerator
+    app.kubernetes.io/instance: namerator
+    app.kubernetes.io/version: "latest"
+    app.kubernetes.io/managed-by: GA
+    app.kubernetes.io/component: operator
+    app.kubernetes.io/part-of: fintlabs-application-infrastructure-services
+    fintlabs.no/team: flais
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: fint-namerator
+      app.kubernetes.io/instance: namerator
+  template:
+    metadata:
+      annotations:
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
+      labels:
+        app.kubernetes.io/name: fint-namerator
+        app.kubernetes.io/instance: namerator
+    spec:
+      serviceAccountName: namerator
+      securityContext:
+        {}
+      containers:
+        - name: namerator
+          securityContext:
+            {}
+          image: "ghcr.io/fintlabs/fint-namerator:sha-dde1811"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: logging.level.no.fintlabs
+              value: DEBUG
+          envFrom:
+            - secretRef:
+                name: namerator
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          # livenessProbe:
+          #   httpGet:
+          #     path: /actuator/health
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 500m
+            requests:
+              memory: 256Mi
+              cpu: 250m

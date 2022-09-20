@@ -37,7 +37,8 @@ spring:
             provider: fint-idp
             scope: urn:netiq.com:nam:scope:oauth:registration:full
 
-logging:
-  level:
-    org:
-      springframework: INFO
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
