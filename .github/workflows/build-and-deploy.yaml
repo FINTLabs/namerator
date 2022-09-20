@@ -53,6 +53,7 @@ jobs:
         with:
           renderEngine: 'kustomize'
           kustomizationPath: 'kustomize/overlays/alpha'
+        id: bake
 
       ## Alpha cluster ##
       - name: Set the target Alpha cluster.
