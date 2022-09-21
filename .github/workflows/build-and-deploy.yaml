@@ -100,7 +100,7 @@ jobs:
         uses: azure/k8s-bake@v2.2
         with:
           renderEngine: 'kustomize'
-          kustomizationPath: 'kustomize/overlays/beta'
+          kustomizationPath: 'kustomize/overlays/api'
         id: bake-api
       - name: Set the target Api cluster.
         uses: azure/aks-set-context@v1
