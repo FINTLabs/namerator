@@ -14,10 +14,10 @@ import java.util.List;
 public class NamOAuthClientApplicationSpec {
     //private String applicationName;
     @Builder.Default
-    private List<String> grantTypes = Arrays.asList("client_credentials", "refresh_token");
+    private List<String> grantTypes = Arrays.asList("authorization_cod", "refresh_token");
 
     @Builder.Default
-    private List<String> redirectUris = Collections.singletonList("https://dummy.com");
+    private List<String> redirectUris = Collections.emptyList();
     @Builder.Default
     private List<String> corsDomains = Collections.emptyList();
     @Builder.Default
@@ -26,8 +26,8 @@ public class NamOAuthClientApplicationSpec {
     private String idTokenSignedResponseAlg = "RS256";
 
     @Builder.Default
-    private String clientIdProperty = "spring.security.oauth2.client.registration.fint.clientId";
+    private String clientIdProperty = "fint.sso.client-id";
 
     @Builder.Default
-    private String clientSecretProperty = "spring.security.oauth2.client.registration.fint.clientSecret";
+    private String clientSecretProperty = "fint.sso.client-id";
 }
