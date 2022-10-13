@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-fint-namerator
+  name: namerator
   labels:
-    app.kubernetes.io/name: fint-namerator
-    app.kubernetes.io/instance: namerator
+    app.kubernetes.io/name: namerator
+    app.kubernetes.io/instance: flais-namerator
     app.kubernetes.io/version: "latest"
     app.kubernetes.io/managed-by: GA
     app.kubernetes.io/component: operator
@@ -18,5 +18,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: fint-namerator
-    app.kubernetes.io/instance: namerator
+    app.kubernetes.io/name: namerator
+    app.kubernetes.io/instance: flais-namerator

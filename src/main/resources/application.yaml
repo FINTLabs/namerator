@@ -18,7 +18,7 @@ fint:
 
 spring:
   application:
-    name: fint-namerator
+    name: namerator
   security:
     oauth2:
       resourceserver:

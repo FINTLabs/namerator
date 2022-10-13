@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: namerator
   labels:
-    app.kubernetes.io/name: fint-namerator
-    app.kubernetes.io/instance: namerator
+    app.kubernetes.io/name: namerator
+    app.kubernetes.io/instance: flais-namerator
     app.kubernetes.io/version: "latest"
     app.kubernetes.io/managed-by: GA
     app.kubernetes.io/component: operator
@@ -14,8 +14,8 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: fint-namerator
-      app.kubernetes.io/instance: namerator
+      app.kubernetes.io/name: namerator
+      app.kubernetes.io/instance: flais-namerator
   template:
     metadata:
       annotations:
@@ -23,8 +23,8 @@ spec:
         prometheus.io/port: "8080"
         prometheus.io/scrape: "true"
       labels:
-        app.kubernetes.io/name: fint-namerator
-        app.kubernetes.io/instance: namerator
+        app.kubernetes.io/name: namerator
+        app.kubernetes.io/instance: flais-namerator
     spec:
       serviceAccountName: namerator
       securityContext:
@@ -33,7 +33,7 @@ spec:
         - name: namerator
           securityContext:
             {}
-          image: "ghcr.io/fintlabs/fint-namerator:sha-dde1811"
+          image: "ghcr.io/fintlabs/namerator:sha-dde1811"
           imagePullPolicy: IfNotPresent
           env:
             - name: logging.level.no.fintlabs
