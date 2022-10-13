@@ -62,13 +62,13 @@ spec:
 
 ### Specification parameters
 
-| Parameters               | Default value                            |
-|:-------------------------|:-----------------------------------------|
-| grantTypes               | `["authorization_cod", "refresh_token"]` |
-| redirectUris             | `[]`                                     |
-| corsDomains              | `[]`                                     |
-| responseTypes            | `["code", "id_token", "token"]`          |
-| idTokenSignedResponseAlg | `RS256`                                  |
+| Parameters               | Default value                             |
+|:-------------------------|:------------------------------------------|
+| grantTypes               | `["authorization_code", "refresh_token"]` |
+| redirectUris             | `[]`                                      |
+| corsDomains              | `[]`                                      |
+| responseTypes            | `["code", "id_token", "token"]`           |
+| idTokenSignedResponseAlg | `RS256`                                   |
 
 See [NetIQ documentation](https://www.microfocus.com/documentation/access-manager/developer-documentation-5.0/oauth-application-developer-guide/registration-endpoint-details.html#mod-client-app)
 for valid values for the parameters.
