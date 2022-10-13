@@ -4,8 +4,5 @@ metadata:
   name: fint-flyt-sso-client
   namespace: demo
 spec:
-  corsDomains:
-    - https://beta.felleskomponent.no
-    - https://api.felleskomponent.no
-    - https://alpha.felleskomponent.no
-  idTokenSignedResponseAlg: RS512
+  redirectUris:
+    - https://frode-test.fintlabs.no/_oauth/callback

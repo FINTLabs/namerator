@@ -33,7 +33,7 @@ spec:
         - name: namerator
           securityContext:
             {}
-          image: "ghcr.io/fintlabs/namerator:sha-dde1811"
+          image: "ghcr.io/fintlabs/namerator:sha-aee500b"
           imagePullPolicy: IfNotPresent
           env:
             - name: logging.level.no.fintlabs

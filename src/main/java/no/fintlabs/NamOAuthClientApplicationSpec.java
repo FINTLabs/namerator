@@ -29,5 +29,5 @@ public class NamOAuthClientApplicationSpec {
     private String clientIdProperty = "fint.sso.client-id";
 
     @Builder.Default
-    private String clientSecretProperty = "fint.sso.client-id";
+    private String clientSecretProperty = "fint.sso.client-secret";
 }
