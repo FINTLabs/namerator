@@ -14,7 +14,7 @@ import java.util.List;
 public class NamOAuthClientApplicationSpec {
     //private String applicationName;
     @Builder.Default
-    private List<String> grantTypes = Arrays.asList("authorization_cod", "refresh_token");
+    private List<String> grantTypes = Arrays.asList("authorization_code", "refresh_token");
 
     @Builder.Default
     private List<String> redirectUris = Collections.emptyList();
