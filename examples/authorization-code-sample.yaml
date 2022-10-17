@@ -1,8 +1,7 @@
 apiVersion: fintlabs.no/v1alpha1
 kind: NamOAuthClientApplicationResource
 metadata:
-  name: fint-flyt-sso-client
-  namespace: demo
+  name: <some name>
 spec:
   redirectUris:
     - https://frode-test.fintlabs.no/_oauth/callback
