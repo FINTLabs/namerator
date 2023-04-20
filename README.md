@@ -69,6 +69,8 @@ spec:
 | corsDomains              | `[]`                                      |
 | responseTypes            | `["code", "id_token", "token"]`           |
 | idTokenSignedResponseAlg | `RS256`                                   |
+| clientIdProperty         | `fint.sso.client-id`                      |
+| clientSecretProperty     | `fint.sso.client-secret`                  |
 
 See [NetIQ documentation](https://www.microfocus.com/documentation/access-manager/developer-documentation-5.0/oauth-application-developer-guide/registration-endpoint-details.html#mod-client-app)
 for valid values for the parameters.
