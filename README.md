@@ -1,4 +1,5 @@
 # FINT NAMerator
+[![Create and publish a Docker image](https://github.com/FINTLabs/namerator/actions/workflows/build-and-deploy.yaml/badge.svg)](https://github.com/FINTLabs/namerator/actions/workflows/build-and-deploy.yaml)
 
 This operator provides the ability integrate NetIQ Access Manager Identity Provider with Kubernetes.
 
