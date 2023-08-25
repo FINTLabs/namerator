@@ -69,7 +69,7 @@ jobs:
         with:
           cluster-name: ${{ env.ALPHA_CLUSTER_NAME }}
           resource-group: ${{ env.ALPHA_CLUSTER_RESOURCE_GROUP }}
-          admin: 'false'
+          admin: 'true'
           use-kubelogin: 'true'
 
       - name: Deploy to Alpha
