@@ -2,14 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: namerator
-  labels:
-    app.kubernetes.io/name: namerator
-    app.kubernetes.io/instance: flais-namerator
-    app.kubernetes.io/version: "latest"
-    app.kubernetes.io/managed-by: GA
-    app.kubernetes.io/component: operator
-    app.kubernetes.io/part-of: fintlabs-application-infrastructure-services
-    fintlabs.no/team: flais
 spec:
   replicas: 1
   selector:
@@ -33,7 +25,7 @@ spec:
         - name: namerator
           securityContext:
             {}
-          image: "ghcr.io/fintlabs/namerator:sha-aee500b"
+          image: "ghcr.io/fintlabs/namerator:sha-d3fac67"
           imagePullPolicy: IfNotPresent
           env:
             - name: logging.level.no.fintlabs

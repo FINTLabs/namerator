@@ -49,37 +49,37 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       ## Alpha cluster ##
-      - name: Bake alpha manifests with Kustomize
-        uses: azure/k8s-bake@v3
-        with:
-          renderEngine: 'kustomize'
-          kustomizationPath: 'kustomize/overlays/alpha'
-        id: bake-alpha
-
-      - uses: azure/login@v2
-        with:
-          creds: '${{ secrets.AKS_ALPHA_FINT_GITHUB }}'
-
-      - uses: azure/use-kubelogin@v1.2
-        with:
-          kubelogin-version: 'v0.0.26'
-
-      - name: Set the target Alpha cluster.
-        uses: azure/aks-set-context@v4
-        with:
-          cluster-name: ${{ env.ALPHA_CLUSTER_NAME }}
-          resource-group: ${{ env.ALPHA_CLUSTER_RESOURCE_GROUP }}
-          admin: 'true'
-          use-kubelogin: 'true'
-
-      - name: Deploy to Alpha
-        uses: azure/k8s-deploy@v5
-        with:
-          manifests: ${{ steps.bake-alpha.outputs.manifestsBundle }}
-          images: |
-            ${{ steps.meta.outputs.tags }}
-          namespace: operators
-          action: deploy
+#      - name: Bake alpha manifests with Kustomize
+#        uses: azure/k8s-bake@v3
+#        with:
+#          renderEngine: 'kustomize'
+#          kustomizationPath: 'kustomize/overlays/alpha'
+#        id: bake-alpha
+#
+#      - uses: azure/login@v2
+#        with:
+#          creds: '${{ secrets.AKS_ALPHA_FINT_GITHUB }}'
+#
+#      - uses: azure/use-kubelogin@v1.2
+#        with:
+#          kubelogin-version: 'v0.0.26'
+#
+#      - name: Set the target Alpha cluster.
+#        uses: azure/aks-set-context@v4
+#        with:
+#          cluster-name: ${{ env.ALPHA_CLUSTER_NAME }}
+#          resource-group: ${{ env.ALPHA_CLUSTER_RESOURCE_GROUP }}
+#          admin: 'true'
+#          use-kubelogin: 'true'
+#
+#      - name: Deploy to Alpha
+#        uses: azure/k8s-deploy@v5
+#        with:
+#          manifests: ${{ steps.bake-alpha.outputs.manifestsBundle }}
+#          images: |
+#            ${{ steps.meta.outputs.tags }}
+#          namespace: operators
+#          action: deploy
 #
 #      ## Beta cluster ##
 #      - name: Bake beta manifests with Kustomize
